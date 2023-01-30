@@ -1,0 +1,16 @@
+{
+  "pokemons": [
+    {
+      "id": 1,
+      "name": "Pikachu",
+      "speciality": "Electric",
+      "imageUrl": "https://assets.pokemon.com/assets/cms2/img/pokedex/full/025.png"
+    },
+    {
+      "id": 2,
+      "name": "Ivysaur",
+      "speciality": "Grass",
+      "imageUrl": "https://assets.pokemon.com/assets/cms2/img/pokedex/full/002.png"
+    }
+  ]
+}

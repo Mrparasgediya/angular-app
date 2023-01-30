@@ -1,26 +1,108 @@
 <app-header></app-header>
 <div class="container">
-  <button type="button" class="btn btn-primary mt-3"  data-bs-toggle="modal" data-bs-target="#exampleModal">Add Pokemon</button>
+  <button
+    type="button"
+    class="btn btn-primary mt-3"
+    data-bs-toggle="modal"
+    data-bs-target="#exampleModal"
+  >
+    Add Pokemon
+  </button>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Add Pokemon</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form [formGroup]="addPokemonForm">
-          <input type="text" formControlName="name" required class="form-control my-2" placeholder="Pokemon Name" aria-label="Name" aria-describedby="basic-addon1">
-          <input type="text" formControlName="speciality" required class="form-control my-2" placeholder="Pokemon Speciality" aria-label="Speciality" aria-describedby="basic-addon1">
-          <input type="text" formControlName="imageUrl" required class="form-control my-2" placeholder="Pokemon Image Url" aria-label="ImageUrl" aria-describedby="basic-addon1">
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Add Pokemon</button>
+  <div
+    class="modal fade"
+    id="exampleModal"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Add Pokemon</h1>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="addPokemonForm">
+            <input
+              type="text"
+              formControlName="name"
+              required
+              class="form-control my-2"
+              placeholder="Pokemon Name"
+              aria-label="Name"
+              aria-describedby="basic-addon1"
+            />
+            <input
+              type="text"
+              formControlName="speciality"
+              required
+              class="form-control my-2"
+              placeholder="Pokemon Speciality"
+              aria-label="Speciality"
+              aria-describedby="basic-addon1"
+            />
+            <input
+              type="text"
+              formControlName="imageUrl"
+              required
+              class="form-control my-2"
+              placeholder="Pokemon Image Url"
+              aria-label="ImageUrl"
+              aria-describedby="basic-addon1"
+            />
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
+          <button type="button" class="btn btn-primary">Add Pokemon</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
+
+  <div *ngIf="this.allPokemon.length === 0; else pokemonsTable">
+    There is No Pokemon...
+  </div>
+  <ng-template #pokemonsTable>
+    <table class="table my-3">
+      <thead class="table-dark">
+        <tr>
+          <th>ID</th>
+          <th>ImageUrl</th>
+          <th>Name</th>
+          <th>Speciality</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let pokemon of allPokemon">
+          <td>
+            {{ pokemon.id }}
+          </td>
+          <td>
+            <img
+              src="{{ pokemon.imageUrl }}"
+              height="80px"
+              width="80px"
+              style="object-fit: contain"
+              alt=""
+            />
+          </td>
+          <td>{{ pokemon.name }}</td>
+          <td>{{ pokemon.speciality }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </ng-template>
 </div>

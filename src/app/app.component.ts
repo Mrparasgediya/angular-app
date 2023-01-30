@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {FormGroup,FormBuilder} from "@angular/forms"
+import { FormGroup, FormBuilder } from "@angular/forms"
+import { PokemonService } from "./services/pokemon.service"
+import { PokemonModel } from './model/pokemon.model'
 
 @Component({
   selector: 'app-root',
@@ -8,10 +10,15 @@ import {FormGroup,FormBuilder} from "@angular/forms"
 })
 export class AppComponent implements OnInit {
   title = 'myApp';
-  addPokemonForm : FormGroup;
+  addPokemonForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  allPokemon: PokemonModel[];
+  pokemonToDisplay: PokemonModel[];
+
+  constructor(private fb: FormBuilder, private pokemonService: PokemonService) {
     this.addPokemonForm = fb.group({});
+    this.allPokemon = [];
+    this.pokemonToDisplay = this.allPokemon;
   }
 
   ngOnInit() {
@@ -20,8 +27,9 @@ export class AppComponent implements OnInit {
       speciality: this.fb.control(''),
       imageUrl: this.fb.control(''),
     })
-    
-  }
 
+    this.pokemonService.getPokemon().subscribe(response => { this.allPokemon = (response) });
+
+  }
 
 }
