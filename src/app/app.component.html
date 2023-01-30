@@ -1,5 +1,24 @@
 <app-header></app-header>
 <div class="container">
+  <div
+    *ngIf="isAlertOn && notification !== null"
+    [ngClass]="{
+      'alert alert-dismissible fade show': true,
+      'alert-danger': notification.getType() === 'error',
+      'alert-success': notification.getType() === 'success'
+    }"
+    role="alert"
+  >
+    <strong>{{ notification.getType() }}!</strong>
+    {{ notification.getMessage() }}
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="alert"
+      aria-label="Close"
+      (click)="hideAlert()"
+    ></button>
+  </div>
   <button
     type="button"
     class="btn btn-primary mt-3"
@@ -66,7 +85,14 @@
           >
             Close
           </button>
-          <button type="button" class="btn btn-primary">Add Pokemon</button>
+          <button
+            type="button"
+            class="btn btn-primary"
+            (click)="addPokemon()"
+            data-bs-dismiss="modal"
+          >
+            Add Pokemon
+          </button>
         </div>
       </div>
     </div>
@@ -76,20 +102,11 @@
     There is No Pokemon...
   </div>
   <ng-template #pokemonsTable>
-    <table class="table my-3">
-      <thead class="table-dark">
-        <tr>
-          <th>ID</th>
-          <th>ImageUrl</th>
-          <th>Name</th>
-          <th>Speciality</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let pokemon of allPokemon">
-          <app-pokemon [pokemon]="pokemon"/>
-        </tr>
-      </tbody>
-    </table>
+    <div>
+      <app-pokemon
+        *ngFor="let pokemon of allPokemon"
+        [pokemon]="pokemon"
+      ></app-pokemon>
+    </div>
   </ng-template>
 </div>

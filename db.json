@@ -11,6 +11,60 @@
       "name": "Ivysaur",
       "speciality": "Grass",
       "imageUrl": "https://assets.pokemon.com/assets/cms2/img/pokedex/full/002.png"
+    },
+    {
+      "name": "Zapdos",
+      "speciality": "Grass",
+      "imageUrl": "https://assets.pokemon.com/assets/cms2/img/pokedex/full/145.png",
+      "id": 3
+    },
+    {
+      "name": "Articuno",
+      "speciality": "Ice",
+      "imageUrl": "https://assets.pokemon.com/assets/cms2/img/pokedex/full/144.png",
+      "id": 4
+    },
+    {
+      "name": "Moltres",
+      "speciality": "Fire",
+      "imageUrl": "https://assets.pokemon.com/assets/cms2/img/pokedex/full/146.png",
+      "id": 5
+    },
+    {
+      "name": "Dratini",
+      "speciality": "Dragon",
+      "imageUrl": "https://assets.pokemon.com/assets/cms2/img/pokedex/full/147.png",
+      "id": 6
+    },
+    {
+      "name": "Dragonair",
+      "speciality": "Dragon",
+      "imageUrl": "https://assets.pokemon.com/assets/cms2/img/pokedex/full/148.png",
+      "id": 7
+    },
+    {
+      "name": "Dragonite",
+      "speciality": "Dragon",
+      "imageUrl": "https://assets.pokemon.com/assets/cms2/img/pokedex/full/149.png",
+      "id": 8
+    },
+    {
+      "name": "Mewtwo",
+      "speciality": "Psychic",
+      "imageUrl": "https://assets.pokemon.com/assets/cms2/img/pokedex/full/150.png",
+      "id": 9
+    },
+    {
+      "name": "test",
+      "speciality": "test",
+      "imageUrl": "test",
+      "id": 10
+    },
+    {
+      "name": "te",
+      "speciality": "test",
+      "imageUrl": "test",
+      "id": 11
     }
   ]
 }

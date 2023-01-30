@@ -1,14 +1,11 @@
-<td>
-  {{ pokemon.id }}
-</td>
-<td>
+<div class="card" style="width: 18rem">
   <img
     src="{{ pokemon.imageUrl }}"
-    height="80px"
-    width="80px"
-    style="object-fit: contain"
-    alt=""
+    class="card-img-top"
+    alt="{{ pokemon.name }}'s Image"
   />
-</td>
-<td>{{ pokemon.name }}</td>
-<td>{{ pokemon.speciality }}</td>
+  <div class="card-body">
+    <h5 class="card-title">{{ pokemon.name }}</h5>
+    <p class="card-text">{{ pokemon.speciality }}</p>
+  </div>
+</div>

@@ -13,4 +13,8 @@ export class PokemonService {
   getPokemon(): Observable<PokemonModel[]> {
     return this.http.get<PokemonModel[]>(this.baseUrl);
   }
+
+  savePokemon(pokemonToSave: PokemonModel): Observable<PokemonModel> {
+    return this.http.post<PokemonModel>(this.baseUrl, pokemonToSave);
+  }
 }
