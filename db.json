@@ -53,18 +53,6 @@
       "speciality": "Psychic",
       "imageUrl": "https://assets.pokemon.com/assets/cms2/img/pokedex/full/150.png",
       "id": 9
-    },
-    {
-      "name": "test",
-      "speciality": "test",
-      "imageUrl": "test",
-      "id": 10
-    },
-    {
-      "name": "te",
-      "speciality": "test",
-      "imageUrl": "test",
-      "id": 11
     }
   ]
 }

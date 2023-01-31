@@ -7,12 +7,16 @@ import { HeaderComponent } from './header/header.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { PokemonComponent } from './pokemon/pokemon.component';
+import { PokemonListComponent } from './pokemon-list/pokemon-list.component';
+import { PokemonFormModalComponent } from './pokemon-form-modal/pokemon-form-modal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    PokemonComponent
+    PokemonComponent,
+    PokemonListComponent,
+    PokemonFormModalComponent
   ],
   imports: [
     ReactiveFormsModule,

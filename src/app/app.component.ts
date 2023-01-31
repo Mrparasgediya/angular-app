@@ -32,7 +32,14 @@ export class AppComponent implements OnInit {
       imageUrl: this.fb.control(''),
     })
 
-    this.pokemonService.getPokemon().subscribe(response => { this.allPokemon = (response) });
+    const getAllPokemonApiResponseHandler = (allPokemons: PokemonModel[]) => {
+      this.allPokemon = allPokemons;
+    }
+
+    this.pokemonService.getPokemon().subscribe({
+      next: getAllPokemonApiResponseHandler.bind(this),
+      error: this.pokemonApiErrorHandler.bind(this)
+    });
 
   }
 
@@ -54,6 +61,11 @@ export class AppComponent implements OnInit {
     this.ImageUrl.setValue("");
   }
 
+  pokemonApiErrorHandler = (error: any) => {
+    this.showAlert('error', error.message || "Can't add pokemon")
+  }
+
+
   addPokemon() {
     const pokemon: PokemonModel = {
       name: this.Name.value,
@@ -61,23 +73,29 @@ export class AppComponent implements OnInit {
       imageUrl: this.ImageUrl.value
     }
 
-    this.pokemonService.savePokemon(pokemon).subscribe(response => {
-      this.allPokemon = this.allPokemon.concat([response]);
+    const addPokemonApiResponseHandler = (addedPokemon: PokemonModel) => {
+      this.allPokemon = this.allPokemon.concat([addedPokemon]);
       this.clearForm();
-      this.showAlert()
-      setTimeout(() => {
-        this.hideAlert()
-      }, 3000);
-    }, (error) => {
-      console.log(error)
+      this.showAlert('success', `Pokemon ${addedPokemon.name} is added successfully!`)
+    }
+
+
+    this.pokemonService.savePokemon(pokemon).subscribe({
+      next: addPokemonApiResponseHandler.bind(this),
+      error: this.pokemonApiErrorHandler.bind(this)
     });
   }
 
-  showAlert() {
+  showAlert(notificationType: Notification['type'], notificationMessage: Notification['message']) {
+    this.notification = new Notification(notificationType, notificationMessage);
     this.isAlertOn = true;
+    setTimeout(() => {
+      this.hideAlert()
+    }, 3000);
   }
 
   hideAlert() {
     this.isAlertOn = false;
+    this.notification = null;
   }
 }

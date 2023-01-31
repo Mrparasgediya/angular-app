@@ -1,5 +1,5 @@
 <app-header></app-header>
-<div class="container">
+<div class="container-lg container-fluid">
   <div
     *ngIf="isAlertOn && notification !== null"
     [ngClass]="{
@@ -19,14 +19,6 @@
       (click)="hideAlert()"
     ></button>
   </div>
-  <button
-    type="button"
-    class="btn btn-primary mt-3"
-    data-bs-toggle="modal"
-    data-bs-target="#exampleModal"
-  >
-    Add Pokemon
-  </button>
 
   <div
     class="modal fade"
@@ -101,12 +93,8 @@
   <div *ngIf="this.allPokemon.length === 0; else pokemonsTable">
     There is No Pokemon...
   </div>
+
   <ng-template #pokemonsTable>
-    <div>
-      <app-pokemon
-        *ngFor="let pokemon of allPokemon"
-        [pokemon]="pokemon"
-      ></app-pokemon>
-    </div>
+    <app-pokemon-list [pokemons]="allPokemon"></app-pokemon-list>
   </ng-template>
 </div>
