@@ -59,7 +59,7 @@ export class AppComponent implements OnInit {
   }
 
   pokemonApiErrorHandler = (error: any) => {
-    this.notificationService.showNotification('error', error.message || "Can't add pokemon")
+    this.notificationService.showNotification('error', error.message)
   }
 
 

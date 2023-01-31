@@ -16,14 +16,12 @@ export class NotificationService {
   showNotification(notificationType: Notification['type'], notificationMessage: Notification['message']) {
     this.notification = new Notification(notificationType, notificationMessage);
     this.isNotificationOn = true;
-    console.log('show notification is called')
     setTimeout(() => {
       this.hideNotification()
     }, 3000);
   }
 
   hideNotification() {
-    console.log('hide notification is called')
     this.isNotificationOn = false;
     this.notification = null;
   }
