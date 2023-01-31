@@ -1,25 +1,6 @@
 <app-header></app-header>
 <div class="container-lg container-fluid">
-  <div
-    *ngIf="isAlertOn && notification !== null"
-    [ngClass]="{
-      'alert alert-dismissible fade show': true,
-      'alert-danger': notification.getType() === 'error',
-      'alert-success': notification.getType() === 'success'
-    }"
-    role="alert"
-  >
-    <strong>{{ notification.getType() }}!</strong>
-    {{ notification.getMessage() }}
-    <button
-      type="button"
-      class="btn-close"
-      data-bs-dismiss="alert"
-      aria-label="Close"
-      (click)="hideAlert()"
-    ></button>
-  </div>
-
+  <app-notification></app-notification>
   <div
     class="modal fade"
     id="exampleModal"
@@ -40,6 +21,9 @@
         </div>
         <div class="modal-body">
           <form [formGroup]="addPokemonForm">
+            <div *ngIf="Name && (Name.dirty || Name.touched) && Name.invalid">
+              Invalid Pokemon Name
+            </div>
             <input
               type="text"
               formControlName="name"

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl } from "@angular/forms"
-import { PokemonService } from "./services/pokemon.service"
+import { FormGroup, FormBuilder, FormControl, Validators } from "@angular/forms"
+import { PokemonService } from "./services/pokemon/pokemon.service"
 import { PokemonModel } from './model/pokemon.model'
 import { Notification } from './model/notification.model'
+import { NotificationService } from './services/notification/notification.service';
 
 @Component({
   selector: 'app-root',
@@ -12,22 +13,18 @@ import { Notification } from './model/notification.model'
 export class AppComponent implements OnInit {
   title = 'myApp';
   addPokemonForm: FormGroup;
-  isAlertOn: boolean;
-  notification: Notification | null;
   allPokemon: PokemonModel[];
   pokemonToDisplay: PokemonModel[];
 
-  constructor(private fb: FormBuilder, private pokemonService: PokemonService) {
+  constructor(private fb: FormBuilder, private pokemonService: PokemonService, private notificationService: NotificationService) {
     this.addPokemonForm = fb.group({});
     this.allPokemon = [];
     this.pokemonToDisplay = this.allPokemon;
-    this.isAlertOn = true;
-    this.notification = null
   }
 
   ngOnInit() {
     this.addPokemonForm = this.fb.group({
-      name: this.fb.control(''),
+      name: new FormControl('', [Validators.required]),
       speciality: this.fb.control(''),
       imageUrl: this.fb.control(''),
     })
@@ -62,7 +59,7 @@ export class AppComponent implements OnInit {
   }
 
   pokemonApiErrorHandler = (error: any) => {
-    this.showAlert('error', error.message || "Can't add pokemon")
+    this.notificationService.showNotification('error', error.message || "Can't add pokemon")
   }
 
 
@@ -76,7 +73,7 @@ export class AppComponent implements OnInit {
     const addPokemonApiResponseHandler = (addedPokemon: PokemonModel) => {
       this.allPokemon = this.allPokemon.concat([addedPokemon]);
       this.clearForm();
-      this.showAlert('success', `Pokemon ${addedPokemon.name} is added successfully!`)
+      this.notificationService.showNotification('success', `Pokemon ${addedPokemon.name} is added successfully!`)
     }
 
 
@@ -84,18 +81,5 @@ export class AppComponent implements OnInit {
       next: addPokemonApiResponseHandler.bind(this),
       error: this.pokemonApiErrorHandler.bind(this)
     });
-  }
-
-  showAlert(notificationType: Notification['type'], notificationMessage: Notification['message']) {
-    this.notification = new Notification(notificationType, notificationMessage);
-    this.isAlertOn = true;
-    setTimeout(() => {
-      this.hideAlert()
-    }, 3000);
-  }
-
-  hideAlert() {
-    this.isAlertOn = false;
-    this.notification = null;
   }
 }

@@ -9,6 +9,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { PokemonComponent } from './pokemon/pokemon.component';
 import { PokemonListComponent } from './pokemon-list/pokemon-list.component';
 import { PokemonFormModalComponent } from './pokemon-form-modal/pokemon-form-modal.component';
+import { NotificationComponent } from './notification/notification.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { PokemonFormModalComponent } from './pokemon-form-modal/pokemon-form-mod
     HeaderComponent,
     PokemonComponent,
     PokemonListComponent,
-    PokemonFormModalComponent
+    PokemonFormModalComponent,
+    NotificationComponent
   ],
   imports: [
     ReactiveFormsModule,
